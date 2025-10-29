@@ -1,0 +1,21 @@
+name: helm-quality
+
+on:
+  workflow_call:
+    inputs:
+      paths:
+        type: string
+        required: true
+
+jobs:
+
+  helm-quality:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        paths: ${{ fromJSON(inputs.paths) }}
+
+    steps:
+    - uses: actions/checkout@v4
+    - uses: azure/setup-helm@v4
+    - run: helm lint ${{ matrix.paths }}
