@@ -16,5 +16,5 @@ jobs:
         paths: ${{ fromJSON(inputs.paths) }}
 
     steps:
-    - uses: actions/checkout@v5
+    - uses: actions/checkout@v6
     - run: helm lint ${{ matrix.paths }}
